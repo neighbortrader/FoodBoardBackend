@@ -22,11 +22,7 @@ namespace FoodBoard.Features.Offers
 
         public Offer[] GetAllOffers()
         {
-            return new[]
-            {
-                new Offer(),
-                new Offer()
-            };
+            return _context.Offers.ToArray();
         }
     }
 }
