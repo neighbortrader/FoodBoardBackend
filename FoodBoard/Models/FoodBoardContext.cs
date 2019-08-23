@@ -10,5 +10,7 @@ namespace FoodBoard.Models
         }
 
         public DbSet<Offer> Offers { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Groceries> Groceries { get; set; }
     }
 }
