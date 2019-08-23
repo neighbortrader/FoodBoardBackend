@@ -16,5 +16,10 @@ namespace FoodBoard.Models
         public int? UserId { get; set; }
 
         public virtual User User { get; set; }
+
+        [ForeignKey(nameof(Groceries))]
+        public int? GrocerieId { get; set; }
+
+        public virtual Groceries Groceries { get; set; }
     }
 }

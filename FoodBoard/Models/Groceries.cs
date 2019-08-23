@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FoodBoard.Models
 {
@@ -8,5 +9,8 @@ namespace FoodBoard.Models
 
         [StringLength(50)]
         public string Name { get; set; }
+
+        public virtual ICollection<Offer> Offers { get; set; }
+
     }
 }
