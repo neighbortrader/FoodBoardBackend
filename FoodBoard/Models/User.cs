@@ -15,8 +15,17 @@ namespace FoodBoard.Models
 
         [StringLength(200)]
         public string Email { get; set; }
+        
+        public int ZIPNumber { get; set; }
+
+        [StringLength(100)]
+        public string Place { get; set; }
+
+        [StringLength(100)]
+        public string Street { get; set; }
+
+        public int AddressNumber { get; set; }
 
         public virtual ICollection<Offer> Offers { get; set; }
-
     }
 }
