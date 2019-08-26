@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodBoard.Models
@@ -11,6 +12,10 @@ namespace FoodBoard.Models
         public string Description { get; set; }
 
         public double Price { get; set; }
+
+        public DateTime PurchaseDate { get; set; }
+
+        public DateTime ExpireDate { get; set; }
 
         [ForeignKey(nameof(User))]
         public int? UserId { get; set; }
