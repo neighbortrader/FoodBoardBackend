@@ -1,4 +1,6 @@
-﻿using FoodBoard.Features.Offers;
+﻿using AutoMapper;
+using FoodBoard.Features.Offers;
+using FoodBoard.Features.Users;
 using FoodBoard.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,7 +28,8 @@ namespace FoodBoard
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<FoodBoardContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Database")));
             services.AddTransient<IOfferService, OfferService>();
-
+            services.AddTransient<IUserService, UserService>();
+            services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
