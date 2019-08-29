@@ -18,6 +18,8 @@ namespace FoodBoard.Features.Users
             _mapper = mapper;
         }
 
+        
+
         [HttpPost]
         public IActionResult CreateNewUser([FromBody]UserWriteViewModel userWriteView)
         {

@@ -50,7 +50,7 @@ namespace FoodBoard.Migrations
 
                     b.Property<DateTime>("PurchaseDate");
 
-                    b.Property<int?>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -63,26 +63,47 @@ namespace FoodBoard.Migrations
 
             modelBuilder.Entity("FoodBoard.Models.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
 
                     b.Property<int>("AddressNumber");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(200);
+                    b.Property<string>("ConcurrencyStamp");
+
+                    b.Property<string>("Email");
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
 
                     b.Property<string>("Nickname")
                         .HasMaxLength(50);
 
-                    b.Property<string>("Password")
-                        .HasMaxLength(100);
+                    b.Property<string>("NormalizedEmail");
+
+                    b.Property<string>("NormalizedUserName");
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
 
                     b.Property<string>("Place")
                         .HasMaxLength(100);
 
+                    b.Property<string>("SecurityStamp");
+
                     b.Property<string>("Street")
                         .HasMaxLength(100);
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName");
 
                     b.Property<int>("ZIPNumber");
 
