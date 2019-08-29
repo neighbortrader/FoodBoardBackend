@@ -5,7 +5,7 @@ namespace FoodBoard.Features.Users
 {
     public interface IUserService
     {
-        int PostUser(User user);
+        string PostUser(User user);
     }
 
     public class UserService : IUserService
@@ -17,7 +17,7 @@ namespace FoodBoard.Features.Users
             _context = context;
         }
 
-        public int PostUser(User user)
+        public string PostUser(User user)
         {
             _context.Users.Add(user);
             _context.SaveChanges();
