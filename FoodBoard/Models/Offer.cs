@@ -20,7 +20,7 @@ namespace FoodBoard.Models
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual LoginUser User { get; set; }
 
         [ForeignKey(nameof(Groceries))]
         public int? GrocerieId { get; set; }

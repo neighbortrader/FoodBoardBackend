@@ -4,13 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FoodBoard.Models
 {
-    public class User : IdentityUser
+    public class LoginUser : IdentityUser
     {
         [StringLength(50)]
         public string Nickname { get; set; }
-
-        //[StringLength(100)]
-        //public string Password { get; set; }
         
         public int ZIPNumber { get; set; }
 

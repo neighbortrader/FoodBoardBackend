@@ -8,7 +8,7 @@ namespace FoodBoard.Features.Users
     {
         public UserProfile()
         {
-            CreateMap<UserWriteViewModel, User>();
+            CreateMap<UserWriteViewModel, LoginUser>();
         }
     }
 }

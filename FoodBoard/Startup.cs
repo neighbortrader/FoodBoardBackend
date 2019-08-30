@@ -46,7 +46,7 @@ namespace FoodBoard
                 });
                 c.OperationFilter<SecurityRequirementsOperationFilter>();
             });
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<LoginUser, IdentityRole>()
                    .AddEntityFrameworkStores<FoodBoardContext>();
             var key = Encoding.UTF8.GetBytes(Configuration["SecretKey"]);
             services.AddAuthentication(x =>
