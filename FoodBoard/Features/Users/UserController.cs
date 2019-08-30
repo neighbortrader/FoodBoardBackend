@@ -24,7 +24,7 @@ namespace FoodBoard.Features.Users
         public IActionResult CreateNewUser([FromBody]UserWriteViewModel userWriteView)
         {
             var user = _mapper.Map<LoginUser>(userWriteView);
-            var createdUserId = _userService.PostUser(user);
+            var createdUserId = _userService.PostUser(user, userWriteView.Password);
             return Ok(createdUserId);
         }
     }

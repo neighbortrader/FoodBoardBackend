@@ -6,9 +6,6 @@ namespace FoodBoard.Models
 {
     public class LoginUser : IdentityUser
     {
-        [StringLength(50)]
-        public string Nickname { get; set; }
-        
         public int ZIPNumber { get; set; }
 
         [StringLength(100)]
