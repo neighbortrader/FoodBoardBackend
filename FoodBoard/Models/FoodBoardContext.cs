@@ -13,5 +13,10 @@ namespace FoodBoard.Models
         public DbSet<Offer> Offers { get; set; }
         //public DbSet<User> FoodBoardUsers { get; set; }
         public DbSet<Groceries> Groceries { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        { 
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
