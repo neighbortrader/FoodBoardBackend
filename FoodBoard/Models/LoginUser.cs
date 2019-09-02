@@ -6,7 +6,8 @@ namespace FoodBoard.Models
 {
     public class LoginUser : IdentityUser
     {
-        public int ZIPNumber { get; set; }
+        [StringLength(5)]
+        public string ZIPNumber { get; set; }
 
         [StringLength(100)]
         public string Place { get; set; }
@@ -14,7 +15,8 @@ namespace FoodBoard.Models
         [StringLength(100)]
         public string Street { get; set; }
 
-        public int AddressNumber { get; set; }
+        [StringLength(20)]
+        public string AddressNumber { get; set; }
 
         public virtual ICollection<Offer> Offers { get; set; }
     }
