@@ -6,7 +6,8 @@ namespace FoodBoard.Features.Users
 {
     public interface IUserService
     {
-        string PostUser(LoginUser user, string password);
+        bool PostUser(LoginUser user, string password);
+        bool CheckPass();
     }
 
     public class UserService : IUserService
@@ -20,12 +21,15 @@ namespace FoodBoard.Features.Users
             _userManager = userManager;
         }
 
-        public string PostUser(LoginUser user, string password)
+        public bool PostUser(LoginUser user, string password)
         {
-            _userManager.CreateAsync(user, password);
-            _context.Users.Add(user);
-            _context.SaveChanges();
-            return user.Id;
+            var test = _userManager.CreateAsync(user, password).Result;
+            return test.Succeeded;
+        }
+
+        public bool CheckPass()
+        {
+            return true;
         }
     }
 }
