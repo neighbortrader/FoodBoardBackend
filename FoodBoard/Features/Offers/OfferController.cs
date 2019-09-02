@@ -2,6 +2,7 @@
 using FoodBoard.Features.Offers;
 using FoodBoard.Features.Offers.Representation;
 using FoodBoard.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodBoard.Controllers
@@ -24,6 +25,7 @@ namespace FoodBoard.Controllers
             return Ok(_offerService.GetAllOffers());
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult CreateNewOffer([FromBody]OfferWriteViewModel offerWriteViewModel)
         {
