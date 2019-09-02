@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FoodBoard.Features.Authorization;
 using FoodBoard.Features.Offers;
 using FoodBoard.Features.Users;
 using FoodBoard.Models;
@@ -33,6 +34,8 @@ namespace FoodBoard
             services.AddDbContext<FoodBoardContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Database")));
             services.AddTransient<IOfferService, OfferService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IAuthorizationService, AuthorizationService>();
+            services.AddTransient<ITokenGenerator, TokenGenerator>();
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>
             {
@@ -83,7 +86,7 @@ namespace FoodBoard
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
