@@ -6,6 +6,7 @@ namespace FoodBoard.Features.Offers
     public interface IOfferService
     {
         Offer[] GetAllOffers();
+        int PostOffer(Offer offer);
     }
 
     public class OfferService : IOfferService
@@ -20,6 +21,13 @@ namespace FoodBoard.Features.Offers
         public Offer[] GetAllOffers()
         {
             return _context.Offers.ToArray();
+        }
+
+        public int PostOffer(Offer offer)
+        {
+            _context.Add(offer);
+            _context.SaveChanges();
+            return offer.Id;
         }
     }
 }
