@@ -2,27 +2,26 @@
 
 namespace FoodBoard.Migrations
 {
-    public partial class insertedUser : Migration
+    public partial class ZipAsString : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Description",
-                table: "Offers",
-                maxLength: 500,
+                name: "ZIPNumber",
+                table: "AspNetUsers",
+                maxLength: 5,
                 nullable: true,
-                oldClrType: typeof(string),
-                oldNullable: true);
+                oldClrType: typeof(int));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "Description",
-                table: "Offers",
-                nullable: true,
+            migrationBuilder.AlterColumn<int>(
+                name: "ZIPNumber",
+                table: "AspNetUsers",
+                nullable: false,
                 oldClrType: typeof(string),
-                oldMaxLength: 500,
+                oldMaxLength: 5,
                 oldNullable: true);
         }
     }

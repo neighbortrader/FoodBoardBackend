@@ -1,14 +1,19 @@
 ﻿using AutoMapper;
 using FoodBoard.Features.Offers;
+using FoodBoard.Features.Users;
 using FoodBoard.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Text;
 
 namespace FoodBoard
 {
@@ -27,6 +32,7 @@ namespace FoodBoard
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<FoodBoardContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Database")));
             services.AddTransient<IOfferService, OfferService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>
             {
@@ -39,6 +45,24 @@ namespace FoodBoard
                     Type = "apiKey"
                 });
                 c.OperationFilter<SecurityRequirementsOperationFilter>();
+            });
+            services.AddIdentity<LoginUser, IdentityRole>()
+                   .AddEntityFrameworkStores<FoodBoardContext>();
+            var key = Encoding.UTF8.GetBytes(Configuration["SecretKey"]);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
         }
 

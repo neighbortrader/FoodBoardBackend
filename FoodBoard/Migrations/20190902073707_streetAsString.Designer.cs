@@ -4,14 +4,16 @@ using FoodBoard.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodBoard.Migrations
 {
     [DbContext(typeof(FoodBoardContext))]
-    partial class FoodBoardContextModelSnapshot : ModelSnapshot
+    [Migration("20190902073707_streetAsString")]
+    partial class streetAsString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,8 +82,7 @@ namespace FoodBoard.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
-                    b.Property<string>("ZIPNumber")
-                        .HasMaxLength(5);
+                    b.Property<int>("ZIPNumber");
 
                     b.HasKey("Id");
 
