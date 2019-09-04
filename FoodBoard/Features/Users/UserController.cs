@@ -1,7 +1,7 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using FoodBoard.Features.Users.Representation;
 using FoodBoard.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodBoard.Features.Users
@@ -17,9 +17,7 @@ namespace FoodBoard.Features.Users
             _userService = userService;
             _mapper = mapper;
         }
-
         
-
         [HttpPost]
         public IActionResult CreateNewUser([FromBody]UserWriteViewModel userWriteView)
         {
