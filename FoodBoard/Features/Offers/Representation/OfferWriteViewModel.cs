@@ -8,7 +8,7 @@ namespace FoodBoard.Features.Offers.Representation
         public double Price { get; set; }
         public DateTime PurchaseDate { get; set; }
         public DateTime ExpirationDate { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int GrocerieId { get; set; }
     }
 }
