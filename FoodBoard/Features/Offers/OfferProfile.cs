@@ -9,6 +9,7 @@ namespace FoodBoard.Features.Offers
         public OfferProfile()
         {
             CreateMap<OfferWriteViewModel, Offer>();
+            CreateMap<Offer, OfferReadViewModel>();
         }
     }
 }

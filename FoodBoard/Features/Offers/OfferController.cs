@@ -4,6 +4,7 @@ using FoodBoard.Features.Offers.Representation;
 using FoodBoard.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace FoodBoard.Controllers
 {
@@ -22,7 +23,9 @@ namespace FoodBoard.Controllers
         [HttpGet]
         public IActionResult GetAllOffers()
         {
-            return Ok(_offerService.GetAllOffers());
+            var offer = _offerService.GetAllOffers();
+            var offerReadView = offer.Select(o => _mapper.Map<OfferReadViewModel>(o));
+            return Ok(offerReadView);
         }
 
         [Authorize]
