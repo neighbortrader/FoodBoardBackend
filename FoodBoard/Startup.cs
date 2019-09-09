@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FoodBoard.Features.Authorization;
+using FoodBoard.Features.Groceries;
 using FoodBoard.Features.Offers;
 using FoodBoard.Features.Users;
 using FoodBoard.Models;
@@ -36,6 +37,7 @@ namespace FoodBoard
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAuthorizationService, AuthorizationService>();
             services.AddTransient<ITokenGenerator, TokenGenerator>();
+            services.AddTransient<IGrocerieService, GrocerieService>();
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>
             {
