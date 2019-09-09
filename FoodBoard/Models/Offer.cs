@@ -25,6 +25,6 @@ namespace FoodBoard.Models
         [ForeignKey(nameof(Groceries))]
         public int? GrocerieId { get; set; }
 
-        public virtual Groceries Groceries { get; set; }
+        public virtual Grocerie Groceries { get; set; }
     }
 }
