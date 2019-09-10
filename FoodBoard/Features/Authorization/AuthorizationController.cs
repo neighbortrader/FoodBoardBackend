@@ -1,4 +1,5 @@
 ﻿using FoodBoard.Features.Authorization.Representations;
+using FoodBoard.Features.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodBoard.Features.Authorization
@@ -8,10 +9,12 @@ namespace FoodBoard.Features.Authorization
     {
         private readonly IAuthorizationService _authorizationService;
         private readonly ITokenGenerator _tokenGenerator;
+        private readonly IUserService _userService;
 
-        public AuthorizationController(IAuthorizationService authorizationService, ITokenGenerator tokenGenerator)
+        public AuthorizationController(IAuthorizationService authorizationService, ITokenGenerator tokenGenerator, IUserService userService)
         {
             _authorizationService = authorizationService;
+            _userService = userService;
             _tokenGenerator = tokenGenerator;
         }
 
@@ -22,7 +25,8 @@ namespace FoodBoard.Features.Authorization
             string token = "";
             if (valid)
             {
-                token = _tokenGenerator.GenerateToken();
+                var userId = _userService.GetUserByName(loginViewModel.Username).Id;
+                token = _tokenGenerator.GenerateToken(userId);
             }
             return Ok(token);
         }
