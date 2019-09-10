@@ -4,14 +4,16 @@ using FoodBoard.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodBoard.Migrations
 {
     [DbContext(typeof(FoodBoardContext))]
-    partial class FoodBoardContextModelSnapshot : ModelSnapshot
+    [Migration("20190910084357_dataSeeding")]
+    partial class dataSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,31 +39,6 @@ namespace FoodBoard.Migrations
                         {
                             Id = 1,
                             Name = "Milchprodukt"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Fisch/Fleisch"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Obst/Gemüse"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Getreideprodukte"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Getränke"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Süßes/Nachtisch"
                         });
                 });
 
