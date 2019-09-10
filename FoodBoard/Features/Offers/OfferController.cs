@@ -35,15 +35,19 @@ namespace FoodBoard.Controllers
         [HttpPost]
         public IActionResult CreateNewOffer([FromBody]OfferWriteViewModel offerWriteViewModel)
         {
-            var test = GetUserIdFromToken();
+            var user = GetUserFromToken();
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var offer = _mapper.Map<Offer>(offerWriteViewModel);
+            offer.UserId = user.Id;
             var result = _offerService.PostOffer(offer);
             return Ok(result);
         }
 
-        private LoginUser GetUserIdFromToken()
+        private LoginUser GetUserFromToken()
         {
-            var test = User.Claims;
             if (User.Claims.FirstOrDefault() == null) { return null; };
             var TokenOfUser = User.Claims.FirstOrDefault().Value;
             return _userService.GetUserById(TokenOfUser);
