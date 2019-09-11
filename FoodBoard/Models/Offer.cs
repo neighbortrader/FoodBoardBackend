@@ -17,6 +17,8 @@ namespace FoodBoard.Models
 
         public DateTime ExpireDate { get; set; }
 
+        public DateTime CreationDate { get; set; }
+
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
 
