@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FoodBoard.Features.Offers;
 using FoodBoard.Features.Offers.Representation;
+using FoodBoard.Features.Users;
 using FoodBoard.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +13,13 @@ namespace FoodBoard.Controllers
     public class OfferController : Controller
     {
         private readonly IOfferService _offerService;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
-        public OfferController(IOfferService offerService, IMapper mapper)
+        public OfferController(IOfferService offerService, IMapper mapper, IUserService userService)
         {
             _offerService = offerService;
+            _userService = userService;
             _mapper = mapper;
         }
         
@@ -32,9 +35,22 @@ namespace FoodBoard.Controllers
         [HttpPost]
         public IActionResult CreateNewOffer([FromBody]OfferWriteViewModel offerWriteViewModel)
         {
+            var user = GetUserFromToken();
+            if (user == null)
+            {
+                return Unauthorized();
+            }
             var offer = _mapper.Map<Offer>(offerWriteViewModel);
+            offer.UserId = user.Id;
             var result = _offerService.PostOffer(offer);
             return Ok(result);
+        }
+
+        private LoginUser GetUserFromToken()
+        {
+            if (User.Claims.FirstOrDefault() == null) { return null; };
+            var TokenOfUser = User.Claims.FirstOrDefault().Value;
+            return _userService.GetUserById(TokenOfUser);
         }
     }
 }
