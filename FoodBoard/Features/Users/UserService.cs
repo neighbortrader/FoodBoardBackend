@@ -24,8 +24,8 @@ namespace FoodBoard.Features.Users
 
         public bool PostUser(LoginUser user, string password)
         {
-            var test = _userManager.CreateAsync(user, password).Result;
-            return test.Succeeded;
+            var userCreate = _userManager.CreateAsync(user, password).Result;
+            return userCreate.Succeeded;
         }
 
         public LoginUser GetUserById(string id)
