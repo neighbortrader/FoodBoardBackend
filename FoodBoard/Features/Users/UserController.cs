@@ -3,6 +3,7 @@ using FoodBoard.Features.Users.Representation;
 using FoodBoard.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace FoodBoard.Features.Users
 {
@@ -23,12 +24,12 @@ namespace FoodBoard.Features.Users
         {
             var user = _mapper.Map<LoginUser>(userWriteView);
             var userCreated = _userService.PostUser(user, userWriteView.Password);
-            if(userCreated)
+            if(userCreated.Succeeded)
             {
                 return Ok();
             } else
             {
-                return BadRequest();
+                return BadRequest(userCreated.Errors.ToArray());
             }
         }
     }

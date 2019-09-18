@@ -1,12 +1,11 @@
-﻿
-using FoodBoard.Models;
+﻿using FoodBoard.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace FoodBoard.Features.Users
 {
     public interface IUserService
     {
-        bool PostUser(LoginUser user, string password);
+        IdentityResult PostUser(LoginUser user, string password);
         LoginUser GetUserById(string id);
         LoginUser GetUserByName(string name);
     }
@@ -22,10 +21,10 @@ namespace FoodBoard.Features.Users
             _userManager = userManager;
         }
 
-        public bool PostUser(LoginUser user, string password)
+        public IdentityResult PostUser(LoginUser user, string password)
         {
-            var test = _userManager.CreateAsync(user, password).Result;
-            return test.Succeeded;
+            var userCreate = _userManager.CreateAsync(user, password).Result;
+            return userCreate;
         }
 
         public LoginUser GetUserById(string id)
