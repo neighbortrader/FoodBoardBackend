@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FoodBoard.Features.Offers.Representation;
 using FoodBoard.Models;
+using System;
 
 namespace FoodBoard.Features.Offers
 {
@@ -8,7 +9,9 @@ namespace FoodBoard.Features.Offers
     {
         public OfferProfile()
         {
-            CreateMap<OfferWriteViewModel, Offer>();
+            CreateMap<OfferWriteViewModel, Offer>()
+                .ForMember(offer => offer.ExpireDate, opt => opt.MapFrom(src => src.ExpirationDate))
+                .ForMember(offer => offer.CreationDate, opt => opt.MapFrom(src => DateTime.Now));
             CreateMap<Offer, OfferReadViewModel>();
         }
     }
